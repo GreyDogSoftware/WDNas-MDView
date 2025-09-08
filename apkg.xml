@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+  <apkg>
+    <item>
+      <procudt_id>0</procudt_id>
+      <custom_id>20</custom_id>
+      <model_id>2</model_id>
+      <app_id>3</app_id>
+      <user_control>1</user_control>
+      <center_type>1</center_type>
+      <individual_flag>0</individual_flag>
+      <name>md-view</name>
+      <show>MD Viewer</show>
+      <enable>1</enable>
+      <version>1.0.0-0</version>
+      <date>20250830</date>
+      <inst_date>08/28/2025 12:37:20</inst_date>
+      <path>/mnt/HD/HD_a2/Nas_Prog/md-view</path>
+      <ps_name/>
+      <url>index.html</url>
+      <url_port/>
+      <apkg_version>2</apkg_version>
+      <packager>Cerberus Inc.</packager>
+      <email/>
+      <homepage/>
+      <inst_depend/>
+      <inst_conflict/>
+      <start_depend/>
+      <start_conflict/>
+      <description>Simple purely HTML viewer for MD files.</description>
+      <icon>icon.png</icon>
+      <MinFWVer>5.00.194</MinFWVer>
+      <MaxFWVer/>
+      <Hidden/>
+    </item>
+  </apkg>
+</config>

@@ -1,0 +1,41 @@
+md-block > blockquote{
+	background-color: rgba(190,190,190,0.2);
+	margin: 1em;
+	border-left: 5px solid rgb(255,255,0);
+	padding: 1em;
+	padding-top: .5em;
+	padding-bottom: .5em;
+	font-style: italic;
+}
+md-block > blockquote > p{
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+md-block > pre {
+  background-color: rgba(190,190,190,0.2) !important;
+}
+
+[data-bs-theme=dark] md-block > pre {
+  background-color: rgba(64,64,64,0.2) !important;
+}
+
+[data-bs-theme=dark] md-block > pre > code{
+  color: rgb(222, 226, 230);
+}
+
+[data-bs-theme=dark] md-block > blockquote {
+  background-color: rgba(64,64,64,0.2);
+  border-left: 5px solid rgb(96,0,96);
+}
+
+
+code[class*="language-"],
+[data-bs-theme=dark] code[class*="language-"]{
+	text-shadow: none;
+}
+
+span.token,
+[data-bs-theme=dark] span.token{
+	background:none !important;
+}

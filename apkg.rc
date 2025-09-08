@@ -1,0 +1,20 @@
+Package: md-view
+Section: Apps
+Version: 1.0.0-0
+Packager: Cerberus Inc.
+Email: 
+Homepage: 
+Description: Simple purely HTML viewer for MD files.
+Icon: icon.png
+AddonShowName: MD Viewer
+AddonIndexPage: index.html
+AddonUsedPort: 
+InstDepend: 
+InstConflict: 
+StartDepend: 
+StartConflict: 
+CenterType: 1
+UserControl: 1
+MinFWVer: 5.00.194
+MaxFWVer: 
+IndividualFlag: 

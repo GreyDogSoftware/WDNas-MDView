@@ -83,4 +83,16 @@
 
 .repo-item:hover, .explorer-item:hover{
 	background-color: rgba(0,0,0, 0.2);
+	cursor: pointer;
+}
+
+.repo-item[repo-data-available=false] {
+	cursor: not-allowed;
+}
+
+.repo-icon{
+	font-size: 1.7em;
+}
+.repo-nav-icon{
+	font-size: 1.4em;
 }

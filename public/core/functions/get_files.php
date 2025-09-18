@@ -1,13 +1,9 @@
 <?php
 
 function get_files($SearchPath, $Config): array{
-    if(empty($Config))die("No config");
+    if(empty($Config))throw new \Exception("Empty config array");
 
     $NewPath = resolvePath($SearchPath, $Config);
-    //echo '<pre>';
-    //var_dump($NewPath);
-    //echo '</pre>';
-    //die("");
     if(!$NewPath) {
         return [];
     }else{

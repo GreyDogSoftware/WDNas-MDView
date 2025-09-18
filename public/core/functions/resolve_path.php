@@ -1,40 +1,42 @@
 <?php
 function resolvePath($SearchPath, $Config){
-    if(empty($Config))die("No config");
+    if(empty($Config))throw new \Exception("Empty config array");
 
     // Exploding the path
     $PathNodes = explode("/", $SearchPath);
     if(count($PathNodes) > 0){
         $RepoKey = $PathNodes[0];
         if (key_exists($RepoKey, $Config['repositories'])){
-            //echo '<pre>';
-            //var_dump($SearchPath);
-            //echo '</pre>';
-            //echo "\n";
-
+            $Result = array(
+                'fullPath'=>'',
+                'rootPath'=>'',
+                'relativePath'=>'',
+                'nodeName'=>'');
             $NodePath = substr($SearchPath, strlen($RepoKey));
+            $RepoProtected = false;
             $TempPath = "";
             if(is_array($Config['repositories'][$RepoKey])){
                 if (key_exists('path',$Config['repositories'][$RepoKey])) $TempPath = $Config['repositories'][$RepoKey]['path'] . $NodePath;
+                if (key_exists('secret',$Config['repositories'][$RepoKey])) $RepoProtected=true;
             }else{
                 $TempPath = $Config['repositories'][$RepoKey] . $NodePath;
             }
-
             $NewPath = realpath($TempPath);
-            /*echo $RepoKey.'</br>';
-            echo $NodePath.'</br>';
-            echo $TempPath.'</br>';
-            echo $NewPath.'</br>';
-            die();*/
 
-            $Result = array('fullPath'=>$NewPath,
-                            'rootPath'=>$Config['repositories'][$RepoKey],
-                            'relativePath'=>$RepoKey.$NodePath,
-                            'nodeName'=>$RepoKey);
+            $Result['fullPath'] = $NewPath;
+            $Result['rootPath'] = $Config['repositories'][$RepoKey];
+            $Result['relativePath'] = $RepoKey.$NodePath;
+            $Result['nodeName'] = $RepoKey;
+            $Result['protected'] = $RepoProtected;
 
-            if($NewPath) return $Result;
+            // TODO: This need to throw an exception if the path doesn't exists
+            if($NewPath) {
+                return $Result;
+            }else{
+                throw new \Exception("Cannot resolve path: ".$SearchPath);
+            }
         }
     }
-    return false;
+    throw new \Exception("Cannot resolve path: ".$SearchPath);
 }
 ?>

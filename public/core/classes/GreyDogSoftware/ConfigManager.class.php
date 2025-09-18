@@ -7,10 +7,10 @@ namespace GreyDogSoftware{
             if($ForceConstPath){
                 self::GetEnviroment();
                 $TargetPath = realpath(CORE_CONFIG_DIR."/$Target");
-                if(!file_exists($TargetPath)) die("Config file not found (".(self::$ShowFullPathOnError?CORE_CONFIG_DIR."/$Target":$Target).")");
+                if(!file_exists($TargetPath)) throw new \Exception("Config file not found (".(self::$ShowFullPathOnError?CORE_CONFIG_DIR."/$Target":$Target).")");
             }else{
                 $TargetPath = realpath($Target);
-                if(!file_exists($TargetPath)) die("Config file not found ($Target)");
+                if(!file_exists($TargetPath)) throw new \Exception("Config file not found ($Target)");
             }
             $Result = include $TargetPath;
             return $Result;
@@ -21,14 +21,16 @@ namespace GreyDogSoftware{
             if($ForceConstPath){
                 self::GetEnviroment();
                 $TargetPath = CORE_CONFIG_DIR."/$Target";
-                if(!file_exists($TargetPath)) if (!$CreateNew) die("Config file not found (".(self::$ShowFullPathOnError?CORE_CONFIG_DIR."/$Target":$Target).")");
+                if(!file_exists($TargetPath)) if (!$CreateNew) throw new \Exception("Config file not found (".(self::$ShowFullPathOnError?CORE_CONFIG_DIR."/$Target":$Target).")");
             }else{
                 $TargetPath = $Target;
-                if(!file_exists($TargetPath)) if (!$CreateNew) die("Config file not found ($Target)");
+                if(!file_exists($TargetPath)) if (!$CreateNew) throw new \Exception("Config file not found ($Target)");
             }
-            if(!file_put_contents($TargetPath, '<?php return ' . var_export($Contents, true) . ';?>')) die("Can't save config file.");
+            if(!file_put_contents($TargetPath, '<?php return ' . var_export($Contents, true) . ';?>')) throw new \Exception("Can't save config file.");
             return true;
         }
+
+        // TODO: This function need to be developed... this is mostly a placeholder
         public static function DeleteConfig($Target, bool $ForceConstPath=true) {
             $TargetPath='';
             if($ForceConstPath){
@@ -43,8 +45,8 @@ namespace GreyDogSoftware{
         }
 
         private static function GetEnviroment() {
-            if (!defined('CORE_CONFIG_DIR')) die('Config repository path not set. The CORE_CONFIG_DIR constant must be defined with a valid path.');
-            if (!realpath(CORE_CONFIG_DIR)) die('Config repository path not found. Invalid path set in CORE_CONFIG_DIR');
+            if (!defined('CORE_CONFIG_DIR')) throw new \Exception('Config repository path not set. The CORE_CONFIG_DIR constant must be defined with a valid path.');
+            if (!realpath(CORE_CONFIG_DIR)) throw new \Exception('Config repository path not found. Invalid path set in CORE_CONFIG_DIR');
             return true;
         }
     }

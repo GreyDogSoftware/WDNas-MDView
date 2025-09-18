@@ -10,9 +10,10 @@
 		<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
 		<link href="css/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
 		<meta name="theme-color" content="#712cf9">
-		<link href="css/sidebars.css" rel="stylesheet">
+		<!--<link href="css/sidebars.css" rel="stylesheet">-->
 		<link href="css/md-block/md-block.css" rel="stylesheet">
 		<link href="css/custom.css" rel="stylesheet">
+		<link href="css/prism-js/prism-js.css" rel="stylesheet"/>
 	</head>
 
 	<body>
@@ -29,29 +30,6 @@
 			</symbol>
 			<symbol id="sun-fill" viewBox="0 0 16 16">
 				<path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"></path>
-			</symbol>
-		</svg>
-		<svg xmlns="http://www.w3.org/2000/svg" class="d-none">
-			<symbol id="bootstrap" viewBox="0 0 118 94">
-				<title>Bootstrap</title>
-				<path fill-rule="evenodd" clip-rule="evenodd" d="M24.509 0c-6.733 0-11.715 5.893-11.492 12.284.214 6.14-.064 14.092-2.066 20.577C8.943 39.365 5.547 43.485 0 44.014v5.972c5.547.529 8.943 4.649 10.951 11.153 2.002 6.485 2.28 14.437 2.066 20.577C12.794 88.106 17.776 94 24.51 94H93.5c6.733 0 11.714-5.893 11.491-12.284-.214-6.14.064-14.092 2.066-20.577 2.009-6.504 5.396-10.624 10.943-11.153v-5.972c-5.547-.529-8.934-4.649-10.943-11.153-2.002-6.484-2.28-14.437-2.066-20.577C105.214 5.894 100.233 0 93.5 0H24.508zM80 57.863C80 66.663 73.436 72 62.543 72H44a2 2 0 01-2-2V24a2 2 0 012-2h18.437c9.083 0 15.044 4.92 15.044 12.474 0 5.302-4.01 10.049-9.119 10.88v.277C75.317 46.394 80 51.21 80 57.863zM60.521 28.34H49.948v14.934h8.905c6.884 0 10.68-2.772 10.68-7.727 0-4.643-3.264-7.207-9.012-7.207zM49.948 49.2v16.458H60.91c7.167 0 10.964-2.876 10.964-8.281 0-5.406-3.903-8.178-11.425-8.178H49.948z"></path>
-			</symbol>
-			<symbol id="doc-file" viewBox="0 0 16 16">
-                <path d="M5.5 7a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zM5 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z"></path>
-                <path d="M9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.5L9.5 0zm0 1v2A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"></path>
-            </symbol>
-			<symbol id="doc-folder" viewBox="0 0 16 16">
-                <path d="M.54 3.87.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.826a2 2 0 0 1-1.991-1.819l-.637-7a2 2 0 0 1 .342-1.31zM2.19 4a1 1 0 0 0-.996 1.09l.637 7a1 1 0 0 0 .995.91h10.348a1 1 0 0 0 .995-.91l.637-7A1 1 0 0 0 13.81 4zm4.69-1.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981l.006.139q.323-.119.684-.12h5.396z"/>
-            </symbol>
-			<symbol id="doc-home" viewBox="0 0 16 16">
-                  <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/>
-            </symbol>
-			<symbol id="doc-empty" viewBox="0 0 16 16">
-				  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
-				  <path d="M11.354 4.646a.5.5 0 0 0-.708 0l-6 6a.5.5 0 0 0 .708.708l6-6a.5.5 0 0 0 0-.708"/>
-			</symbol>
-			<symbol id="doc-collection" viewBox="0 0 16 16">
-				   <path d="M2.5 3.5a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1zm2-2a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1zM0 13a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V6a1.5 1.5 0 0 0-1.5-1.5h-13A1.5 1.5 0 0 0 0 6zm1.5.5A.5.5 0 0 1 1 13V6a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5z"/>
 			</symbol>
 		</svg>
 
@@ -93,49 +71,142 @@
 				</li>
 			</ul>
 		</div>
-
+		<!-- OFFCANVAS LEFT-->
 		<div class="offcanvas offcanvas-start text-bg-dark" data-bs-scroll="true" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
 			<div class="offcanvas-header">
 				<a href="/md-view" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-					<svg class="bi pe-none me-2" width="40" height="32" aria-hidden="true">
-						<use xlink:href="#bootstrap"></use>
-					</svg>
+					<img height="64px" style="margin-right: 5px;" src="img/favicon.png"/>
 					<span class="fs-4">Knowledge Base</span>
 				</a>
 				<button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 			</div>
 			<div class="offcanvas-body">
-				<h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-1 mb-1 text-body-secondary text-uppercase">
-					<span class="text-bg-dark">Current files</span>
-					<a class="link-secondary" onclick="LoadRepos()" href="#" aria-label="Add a new report">
-					<svg class="bi pe-none me-2" width="24" height="24" aria-hidden="true"><use xlink:href="#doc-home"></use></svg>
-					</a>
-				</h6>
+				<div class="input-group input-group-sm mb-3">
+					<button class="btn btn-outline-secondary" type="button" onclick="Nav.previous()"><i class="bi bi-arrow-left"></i></button>
+					<button class="btn btn-outline-secondary" type="button" onclick="Nav.next()"><i class="bi bi-arrow-right"></i></button>
+					<button class="btn btn-outline-secondary" type="button" onclick="LoadRepos()"><i class="bi bi-house"></i></button>
+					<input type="text" class="form-control" id="doc-nav-path" disabled>
+					<button class="btn btn-outline-secondary" type="button" onclick="Nav.reload()"><i class="bi bi-arrow-clockwise"></i></button>
+				</div>
+
 				<div>
 					<ul class="nav nav-pills flex-column mb-auto" id="doc_list"></ul>
 				</div>
 			</div>
 		</div>
+		<!-- END OFFCANVAS LEFT -->
+
+		<!-- OFFCANVAS RIGHT -->
+		<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+			<div class="offcanvas-header">
+				<h5 class="offcanvas-title" id="offcanvasRightLabel">File properties</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+			</div>
+			<div class="offcanvas-body">
+				<ul class="nav flex-column">
+					<li class="col-12">
+						<div class="row">
+							<div class="col-3">
+								<span class="item-text">Name:</span>
+							</div>
+							<div class="col">
+								<span class="item-text" id="doc-file-name">&nbsp;</span>
+							</div>
+						</div>
+					</li>
+					<li class="col-12">
+						<div class="row">
+							<div class="col-3">
+								<span class="item-text">Full name:</span>
+							</div>
+							<div class="col">
+								<span class="item-text" id="doc-file-fullname">&nbsp;</span>
+							</div>
+						</div>
+					</li>
+					<li class="col-12">
+						<div class="row">
+							<div class="col-3">
+								<span class="item-text">Size:</span>
+							</div>
+							<div class="col">
+								<span class="item-text" id="doc-file-size">&nbsp;</span>
+							</div>
+						</div>
+					</li>
+					<li class="col-12">
+						<div class="row">
+							<div class="col-3">
+								<span class="item-text">Path:</span>
+							</div>
+							<div class="col">
+								<span class="item-text" id="doc-file-path">&nbsp;</span>
+							</div>
+						</div>
+					</li>
+					<li class="col-12">
+						<div class="row">
+							<div class="col-3">
+								<span class="item-text">Extension:</span>
+							</div>
+							<div class="col">
+								<span class="item-text" id="doc-file-extension">&nbsp;</span>
+							</div>
+						</div>
+					</li>
+					<li class="col-12">
+						<div class="row">
+							<div class="col-3">
+								<span class="item-text">Exists:</span>
+							</div>
+							<div class="col">
+								<span class="item-text" id="doc-file-exists">&nbsp;</span>
+							</div>
+						</div>
+					</li>
+					<li class="col-12">
+						<div class="row">
+							<div class="col-3">
+								<span class="item-text">Protected:</span>
+							</div>
+							<div class="col">
+								<span class="item-text" id="doc-file-protected">&nbsp;</span>
+							</div>
+						</div>
+					</li>
+				</ul>
+				<br/>
+				<div class="btn-toolbar mb-2 mb-md-0" id="doc-actions">
+					<button class="btn btn-sm btn-outline-secondary" type="button" id="doc-share" onclick="shareDocument();"><i class="bi bi-link-45deg"></i> Get link</button>
+					<button class="btn btn-sm btn-outline-secondary" type="button" id="doc-refresh" onclick="refreshDocument();"><i class="bi bi-arrow-clockwise"></i> Reload</button>
+					<button class="btn btn-sm btn-outline-secondary" type="button" id="doc-raw" onclick="documentViewRaw();"><i class="bi bi-filetype-raw"></i> Raw</button>
+				</div>
+			</div>
+		</div>
+		<!-- END OFFCANVAS RIGHT -->
 
 		<div class="d-flex">
 			<div class="b-example-divider b-example-vr"></div>
 			<div class="container p-3 my-3 border">
-				<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center border-bottom">
-					<img src="img/favicon.png"/>
+				<div style="padding-bottom: 15px;" class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center border-bottom">
+					<button class="btn btn-sm btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+						Browser
+					</button>
 					<h1 class="h2" id="doc_filename"></h1>
-					<div class="btn-toolbar mb-2 mb-md-0">
-						<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-						Show explorer
-						</button>
+					<div class="btn-toolbar mb-2 mb-md-0" id="doc-actions">
+						<button class="btn btn-sm btn-outline-secondary" type="button" id="doc-info" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" disabled><i class="bi bi-info-circle"></i> Info</button>
 					</div>
 				</div>
+
 				<!-- DOCUMENT CONTENT CONTAINER-->
 				<md-block class="px-md-4" id="doc_content">
+					<!-- The code here is the default view when no file is loaded yet -->
 					<center>
 						<h1>MD View</h1>
 						Please select a file from the file explorer.
 					</center>
 				</md-block>
+				<!-- END DOCUMENT CONTENT CONTAINER-->
 			</div>
 		</div>
 
@@ -154,7 +225,7 @@
 				<a class="nav-link text-white">
 					<div class="container">
 						<div class="row">
-							<div class="col-1">
+							<div class="col-1 repo-icon">
 								<i class="template-item-icon"></i>
 							</div>
 							<div class="col">
@@ -172,62 +243,81 @@
 				</a>
 			</li>
 		</template>
+		<!-- END TEMPLATES -->
 
+		<div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3">
+			<div id="toast-window" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+				<!--<div class="toast-header">
+					<img src="img/favicon.png" height="28" class="rounded me-2" alt="...">
+					<strong id="toast-title" class="me-auto">Notification toast</strong>
+					<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+				</div>-->
+				<div id="toast-body" class="toast-body">Hello, world! This is a toast message.</div>
+			</div>
+		</div>
 
-<div class="toast-container top-0 start-50 translate-middle-x p-3">
-  <div id="toast-window" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="toast-header">
-      <img src="img/favicon.png" height="28" class="rounded me-2" alt="...">
-      <strong id="idx_toast-title" class="me-auto">Bootstrap</strong>
-      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-    </div>
-    <div id="toast-body" class="toast-body">
-      Hello, world! This is a toast message.
-    </div>
-  </div>
-</div>
-
-
-
-
+		<!-- JS INCLUDES -->
 		<script src="js/bootstrap/bootstrap.bundle.min.js"></script>
-		<script src="js/sidebars.js" class="astro-vvvwv3sm"></script>
-		<script type="module" src="js/md-block/md-block.js"></script>
-		<link href="css/prism-js/prism-js.css" rel="stylesheet" />
+		<!--<script src="js/sidebars.js" class="astro-vvvwv3sm"></script>-->
+		<script src="js/md-block/md-block.js" type="module"></script>
 		<script src="js/prism-js/prism-js.js"></script>
 		<script src="js/jquery/jquery.min.js"></script>
+		<script src="js/toastNotif.js"></script>
 		<script src="js/main.js"></script>
-		<script>LoadRepos()</script>
+		<script src="js/clipboardHandler.js"></script>
+		<!-- JS CODE -->
 		<script>
-		document.getElementById("doc_content").addEventListener("md-render", function(){
-			// Attaching an event listener to the md-block element to inject the copy to clipboard buttons
-			//console.log("render");
-			AddButtons();
-		}
-		);
-		</script>
+			Toast.defaultTitle="MD View";
+			clipboardHandler.SetNotificationHandler(Toast);
+			// md-render Event hooking. Needed to add the "copy to clipboard" buttons into code blocks
+			document.getElementById("doc_content").addEventListener("md-render", function(){
+				clipboardHandler.AddButtons('pre[class^="language-"]');
+			});
+			// Configuring the Nav object
+			Nav._navCallback=LoadFiles;
+			// Nav event listener
+			document.addEventListener("nav-load", function(){
 
+				let navPath = document.getElementById("doc-nav-path");
+				if (navPath){
+					console.log('nav-load');
+					navPath.value=Nav.current();
+				}
+			});
+			// File event listener
+			document.addEventListener('file-load', function(){
+				//console.log('file-load');
+				//console.log(File);
+				let fileName = document.getElementById("doc-file-name");
+				if (fileName){fileName.innerText=File.name;}
+
+				let fileFullname = document.getElementById("doc-file-fullname");
+				if (fileFullname){fileFullname.innerText=File.fullname;}
+
+				let fileSize = document.getElementById("doc-file-size");
+				if (fileSize){fileSize.innerText=File.size+ ' bytes';}
+
+				let filePath = document.getElementById("doc-file-path");
+				if (filePath){filePath.innerText=File.path;}
+
+				let fileExtension = document.getElementById("doc-file-extension");
+				if (fileExtension){fileExtension.innerText=File.extension;}
+
+				let fileExists = document.getElementById("doc-file-exists");
+				if (fileExists){fileExists.innerText=File.exists;}
+
+				let fileProtected = document.getElementById("doc-file-protected");
+				if (fileProtected){fileProtected.innerText=File.protected;}
+
+				let fileInfo = document.getElementById("doc-info");
+				if (fileInfo){fileInfo.removeAttribute("disabled");}
+			});
+		</script>
+		</script>
 		<script>
-
-		Toast.create();
-
-
-
-		const toastcontentset = document.getElementById('toast-content-set')
-		if (toastcontentset) {
-			toastcontentset.addEventListener('click', () => {
-				Toast.setContent('asdasdasd','cassa');
-			})
-		}
-
-		const toastTrigger = document.getElementById('liveToastBtn')
-		if (toastTrigger) {
-			toastTrigger.addEventListener('click', () => {
-				Toast.show();
-			})
-		}
+			// Main load function call. This is defined in the main.js file
+			LoadRepos();
 		</script>
-
 	</body>
 
 </html>

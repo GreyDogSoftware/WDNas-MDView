@@ -1,5 +1,7 @@
 <?php
 function get_repos($Config){
+    if(empty($Config))throw new \Exception("Empty config array");
+
     $ListDirs=array();
     foreach($Config['repositories'] as $Key => $Value){
         $repoName='';
@@ -16,9 +18,15 @@ function get_repos($Config){
             $repoProtected=false;
         }
         $repoPath=$Key.'/';
-        $repoFullPath = resolvePath($repoPath, $Config);
-        if($repoFullPath!=false) $repoAvailable=true;
-        if(!$repoFullPath) $repoProtected=false;
+
+        // This function should be error handled, otherwise it interrupts the repositories enumeration
+        try{
+            $repoFullPath = resolvePath($repoPath, $Config);
+            $repoAvailable=true;
+        }catch (Exception $e) {
+            $repoAvailable=false;
+            $repoProtected=false;
+        }
         $ListDirs[]=array("file_name"=>$repoName,
                           "file_type"=>'repo',
                           "file_ext"=>'',
@@ -26,7 +34,8 @@ function get_repos($Config){
                           "description"=>$repoDesciption,
                           "protected"=>$repoProtected,
                           "available"=>$repoAvailable
-                        );
+                    );
+
     }
     return $ListDirs;
 }

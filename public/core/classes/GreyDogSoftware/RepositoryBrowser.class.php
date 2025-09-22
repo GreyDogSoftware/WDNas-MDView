@@ -17,7 +17,7 @@ namespace GreyDogSoftware{
             if(is_array($ConfigArray['allowed_extensions'])) $this->AllowedExtensions = $ConfigArray['allowed_extensions'];
             if(is_array($ConfigArray['repositories'][$RepoKey])){
                 // Repo config defined as array
-                if(key_exists('path', $ConfigArray['repositories'][$RepoKey])) $this->Path=$ConfigArray['repositories'][$RepoKey]['path'];
+                if(key_exists('path', $ConfigArray['repositories'][$RepoKey])) $this->Path=realpath($ConfigArray['repositories'][$RepoKey]['path']);
                 if(key_exists('name', $ConfigArray['repositories'][$RepoKey])){
                     $this->FriendlyName=$ConfigArray['repositories'][$RepoKey]['name'];
                 }else{

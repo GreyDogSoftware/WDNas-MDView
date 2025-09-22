@@ -1,6 +1,6 @@
 <?php
 function get_FileInfo($filePath, $Config){
-    if(empty($Config))throw new \Exception("Empty config array");
+    if(empty($Config))throw new InvalidConfigException();
 
     $Result = array(
         'name'=>'',         // Name without extension
@@ -15,7 +15,7 @@ function get_FileInfo($filePath, $Config){
         $Status = resolvePath($filePath, $Config);
         $info = new SplFileInfo($Status['fullPath']);
     }catch (Exception $e) {
-        throw new \Exception("Can't get the file info. Invalid path.");
+        throw new ContentNotFoundException();
     }
     $Result['name']=$info->getFilename();
     $Result['fullname']=$info->getFilename();

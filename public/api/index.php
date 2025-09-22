@@ -10,11 +10,21 @@ define('CORE_CLASSES_DIR',      realpath(CORE_DIR.'/classes'));
 define('CORE_FUNCTIONS_DIR',    realpath(CORE_DIR.'/functions'));
 // Core stuff
 require_once(CORE_CLASSES_DIR.'/GreyDogSoftware/ConfigManager.class.php');
+require_once(CORE_CLASSES_DIR.'/Exceptions/AuthorizationRequiredException.php');
+require_once(CORE_CLASSES_DIR.'/Exceptions/ContentNotFoundException.php');
+require_once(CORE_CLASSES_DIR.'/Exceptions/InvalidAuthorizationTokenException.php');
+require_once(CORE_CLASSES_DIR.'/Exceptions/InvalidConfigException.php');
+require_once(CORE_CLASSES_DIR.'/Exceptions/NoAuthorizationProvidedException.php');
+require_once(CORE_CLASSES_DIR.'/Exceptions/RepositoryNotFoundException.php');
 require_once(CORE_FUNCTIONS_DIR.'/resolve_path.php');
 require_once(CORE_FUNCTIONS_DIR.'/get_files.php');
 require_once(CORE_FUNCTIONS_DIR.'/get_content.php');
 require_once(CORE_FUNCTIONS_DIR.'/get_repos.php');
 require_once(CORE_FUNCTIONS_DIR.'/get_fileinfo.php');
+require_once(CORE_FUNCTIONS_DIR.'/get_auth.php');
+require_once(CORE_FUNCTIONS_DIR.'/set_repokey.php');
+require_once(CORE_FUNCTIONS_DIR.'/check_auth.php');
+
 
 // Constants query status
 define('HEADER_HTTP_OK',            "HTTP/1.1 200 OK");
@@ -125,6 +135,57 @@ if ($config!=null){
                     $Response['headers']['status'] = HEADER_HTTP_BADREQUEST;
                     $Response['body']['exit_code']=2;
                     $Response['body']['exit_message']='No path set';
+                }
+                break;
+            case 'get_auth':
+                if (isset($_GET['repo'])){
+                    $Query= $_GET['repo'];
+                    try{
+                        $KeyIsValid=get_auth($Query, $config);
+                        if($KeyIsValid){
+                            $Response['body']['exit_code']=0;
+                            $Response['body']['exit_message']='auth ok';
+                        }else{
+                            $Response['headers']['status'] = HEADER_HTTP_UNAUTHORIZED;
+                            $Response['body']['exit_code']=1;
+                            $Response['body']['exit_message']='sucess';
+                            $Response['body']['content']=$KeyIsValid;
+                        }
+                    }catch (Exception $e) {
+                        $Response['headers']['status'] = HEADER_HTTP_BADREQUEST;
+                        $Response['body']['exit_code']=1;
+                        $Response['body']['exit_message']=$e->getMessage();
+                    }
+                }else{
+                    $Response['headers']['status'] = HEADER_HTTP_BADREQUEST;
+                    $Response['body']['exit_code']=2;
+                    $Response['body']['exit_message']='No path set';
+                }
+                break;
+            case 'set_repokey':
+                if (isset($_GET['repo'])){
+                    if (isset($_GET['secret'])){
+                        $RepoKey =$_GET['repo'];
+                        try{
+                            $NewSecret = set_repokey($RepoKey,$_GET['secret']);
+                            setcookie('repokey_'.$RepoKey, $NewSecret);
+                            $Response['body']['exit_code']=0;
+                            $Response['body']['exit_message']='key set';
+                            $Response['body']['content']=$NewSecret;
+                        }catch (Exception $e) {
+                            $Response['headers']['status'] = HEADER_HTTP_BADREQUEST;
+                            $Response['body']['exit_code']=1;
+                            $Response['body']['exit_message']=$e->getMessage();
+                        }
+                    }else{
+                        $Response['headers']['status'] = HEADER_HTTP_BADREQUEST;
+                        $Response['body']['exit_code']=1;
+                        $Response['body']['exit_message']='No secret set.';
+                    }
+                }else{
+                    $Response['headers']['status'] = HEADER_HTTP_BADREQUEST;
+                    $Response['body']['exit_code']=1;
+                    $Response['body']['exit_message']='No repo name set';
                 }
                 break;
         }

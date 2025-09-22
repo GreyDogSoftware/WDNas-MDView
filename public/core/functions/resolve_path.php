@@ -1,6 +1,6 @@
 <?php
 function resolvePath($SearchPath, $Config){
-    if(empty($Config))throw new \Exception("Empty config array");
+    if(empty($Config))throw new InvalidConfigException();
 
     // Exploding the path
     $PathNodes = explode("/", $SearchPath);
@@ -29,14 +29,10 @@ function resolvePath($SearchPath, $Config){
             $Result['nodeName'] = $RepoKey;
             $Result['protected'] = $RepoProtected;
 
-            // TODO: This need to throw an exception if the path doesn't exists
-            if($NewPath) {
-                return $Result;
-            }else{
-                throw new \Exception("Cannot resolve path: ".$SearchPath);
-            }
+            if($NewPath) return $Result;
+            throw new RepositoryNotFoundException();
         }
     }
-    throw new \Exception("Cannot resolve path: ".$SearchPath);
+    throw new RepositoryNotFoundException();
 }
 ?>

@@ -1,6 +1,6 @@
 <?php
 function get_repos($Config){
-    if(empty($Config))throw new \Exception("Empty config array");
+    if(empty($Config))throw new InvalidConfigException();
 
     $ListDirs=array();
     foreach($Config['repositories'] as $Key => $Value){

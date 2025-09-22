@@ -1,6 +1,6 @@
 <?php
 function get_content($SearchPath, $Config){
-    if(empty($Config))throw new \Exception("Empty config array");
+    if(empty($Config))throw new InvalidConfigException();
 
     // Exploding the path
     $PathNodes = explode("/", $SearchPath);
@@ -20,7 +20,7 @@ function get_content($SearchPath, $Config){
                 header('Content-Type: text/plain; charset=UTF-8');
                 readfile($NewPath);
             }else{
-                throw new \Exception("File not found.");
+                throw new ContentNotFoundException();
             }
         }
     }

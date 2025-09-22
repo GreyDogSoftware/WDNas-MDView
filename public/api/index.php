@@ -1,4 +1,6 @@
 <?php
+
+use GreyDogSoftware\RepositoryBrowser;
 // Core imports
 error_reporting(E_ALL);
 // Core variables
@@ -10,21 +12,13 @@ define('CORE_CLASSES_DIR',      realpath(CORE_DIR.'/classes'));
 define('CORE_FUNCTIONS_DIR',    realpath(CORE_DIR.'/functions'));
 // Core stuff
 require_once(CORE_CLASSES_DIR.'/GreyDogSoftware/ConfigManager.class.php');
+require_once(CORE_CLASSES_DIR.'/GreyDogSoftware/RepositoryBrowser.class.php');
 require_once(CORE_CLASSES_DIR.'/Exceptions/AuthorizationRequiredException.php');
 require_once(CORE_CLASSES_DIR.'/Exceptions/ContentNotFoundException.php');
 require_once(CORE_CLASSES_DIR.'/Exceptions/InvalidAuthorizationTokenException.php');
 require_once(CORE_CLASSES_DIR.'/Exceptions/InvalidConfigException.php');
 require_once(CORE_CLASSES_DIR.'/Exceptions/NoAuthorizationProvidedException.php');
 require_once(CORE_CLASSES_DIR.'/Exceptions/RepositoryNotFoundException.php');
-require_once(CORE_FUNCTIONS_DIR.'/resolve_path.php');
-require_once(CORE_FUNCTIONS_DIR.'/get_files.php');
-require_once(CORE_FUNCTIONS_DIR.'/get_content.php');
-require_once(CORE_FUNCTIONS_DIR.'/get_repos.php');
-require_once(CORE_FUNCTIONS_DIR.'/get_fileinfo.php');
-require_once(CORE_FUNCTIONS_DIR.'/get_auth.php');
-require_once(CORE_FUNCTIONS_DIR.'/set_repokey.php');
-require_once(CORE_FUNCTIONS_DIR.'/check_auth.php');
-
 
 // Constants query status
 define('HEADER_HTTP_OK',            "HTTP/1.1 200 OK");
@@ -33,6 +27,7 @@ define('HEADER_HTTP_UNAUTHORIZED',  "HTTP/1.1 401 Unauthorized");
 define('HEADER_HTTP_NOTFOUND',      "HTTP/1.1 404 Not Found");
 // Constants content type
 define('HEADER_CONTENT_JSON',       'Content-Type: application/json; charset=utf-8');
+
 
 
 $config = null;
@@ -57,6 +52,7 @@ try {
 }
 
 if ($config!=null){
+
     if (isset($_GET['act'])) {
         $Action = strtolower($_GET['act']);
         switch ($Action) {
@@ -64,11 +60,13 @@ if ($config!=null){
             case 'get_content':
                 if (isset($_GET['path'])){
                     $Query= $_GET['path'];
+
                     $Response['body']['exit_code']=0;
                     $Response['body']['exit_message']='sucess';
                     $Response['body']['query_path']=$Query;
                     try {
-                        get_content($Query,$config); // Reading the target file to the output.
+                        $RepoObj = new GreyDogSoftware\RepositoryBrowser($config,$Query);
+                        $RepoObj->GetContent($Query);
                     } catch (Exception $e) {
                         header($Response['headers']['status']);
                         echo $e->getMessage();
@@ -83,11 +81,12 @@ if ($config!=null){
             case 'get_files':
                 if (isset($_GET['path'])){
                     $Query= $_GET['path'];
+                    $RepoObj = new GreyDogSoftware\RepositoryBrowser($config,$Query);
                     $Response['body']['query_path']=$Query;
                     $FetchOk = false;
                     $Files=null;
                     try{
-                        $Files=get_files($Query,$config);
+                        $Files=$RepoObj->GetFiles($Query);
                         $FetchOk=true;
                     }catch (Exception $e) {
                         $Response['headers']['status'] = HEADER_HTTP_BADREQUEST;
@@ -107,7 +106,7 @@ if ($config!=null){
                 break;
             case 'get_repos':
                 try{
-                    $Content=get_repos($config);
+                    $Content=RepositoryBrowser::GetRepos($config);
                     $Response['body']['exit_code']=0;
                     $Response['body']['exit_message']='sucess';
                     $Response['body']['content']=$Content;
@@ -122,7 +121,8 @@ if ($config!=null){
                     $Query= $_GET['path'];
                     $Response['body']['query_path']=$Query;
                     try{
-                        $Content=get_FileInfo($Query, $config);
+                        $RepoObj = new RepositoryBrowser($config,$Query);
+                        $Content= $RepoObj->GetFileInfo($Query);
                         $Response['body']['exit_code']=0;
                         $Response['body']['exit_message']='sucess';
                         $Response['body']['content']=$Content;
@@ -141,7 +141,8 @@ if ($config!=null){
                 if (isset($_GET['repo'])){
                     $Query= $_GET['repo'];
                     try{
-                        $KeyIsValid=get_auth($Query, $config);
+                        $RepoObj = new GreyDogSoftware\RepositoryBrowser($config,$Query);
+                        $KeyIsValid=$RepoObj->isAuthorized();
                         if($KeyIsValid){
                             $Response['body']['exit_code']=0;
                             $Response['body']['exit_message']='auth ok';
@@ -167,8 +168,10 @@ if ($config!=null){
                     if (isset($_GET['secret'])){
                         $RepoKey =$_GET['repo'];
                         try{
-                            $NewSecret = set_repokey($RepoKey,$_GET['secret']);
-                            setcookie('repokey_'.$RepoKey, $NewSecret);
+                            $RepoObj = new RepositoryBrowser($config,$RepoKey);
+                            $NewSecret = RepositoryBrowser::GetAuthCookie($RepoKey,$_GET['secret']);
+                            // Cookies are valid only for the current session.
+                            setcookie($RepoObj->GetAuthCookieName(), $NewSecret);
                             $Response['body']['exit_code']=0;
                             $Response['body']['exit_message']='key set';
                             $Response['body']['content']=$NewSecret;

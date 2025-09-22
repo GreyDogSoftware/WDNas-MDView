@@ -82,11 +82,11 @@
 			</div>
 			<div class="offcanvas-body">
 				<div class="input-group input-group-sm mb-3">
-					<button class="btn btn-outline-secondary" type="button" onclick="Nav.previous()"><i class="bi bi-arrow-left"></i></button>
-					<button class="btn btn-outline-secondary" type="button" onclick="Nav.next()"><i class="bi bi-arrow-right"></i></button>
+					<button class="btn btn-outline-secondary" type="button" id="doc-nav-previous" onclick="Nav.previous()"><i class="bi bi-arrow-left"></i></button>
+					<button class="btn btn-outline-secondary" type="button" id="doc-nav-next" onclick="Nav.next()"><i class="bi bi-arrow-right"></i></button>
 					<button class="btn btn-outline-secondary" type="button" onclick="LoadRepos()"><i class="bi bi-house"></i></button>
 					<input type="text" class="form-control" id="doc-nav-path" disabled>
-					<button class="btn btn-outline-secondary" type="button" onclick="Nav.reload()"><i class="bi bi-arrow-clockwise"></i></button>
+					<button class="btn btn-outline-secondary" type="button" id="doc-nav-refresh" onclick="Nav.reload()"><i class="bi bi-arrow-clockwise"></i></button>
 				</div>
 
 				<div>
@@ -185,6 +185,51 @@
 		</div>
 		<!-- END OFFCANVAS RIGHT -->
 
+		<!-- OFFCANVAS TOP -->
+		<div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
+			<div class="offcanvas-header">
+				<h5 class="offcanvas-title" id="offcanvasTopLabel">Offcanvas top</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+			</div>
+			<div class="offcanvas-body">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-6 offset-md-3">
+							<div class="mb-3 row">
+								<label for="staticEmail" class="col-sm-2 col-form-label">Repository</label>
+								<div class="col-sm-10">
+									<input type="text" readonly class="form-control-plaintext" id="staticEmail" value="Kazu private stash">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 offset-md-3">
+							<div class="mb-3 row">
+								<label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+								<div class="col-sm-10">
+									<input type="password" class="form-control" id="inputPassword">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 offset-md-3">
+							<div class="mb-3 row">
+								<div class="col-sm-6 d-grid gap-2">
+									<button type="button" class="btn btn-primary">Cancel</button>
+								</div>
+								<div class="col-sm-6 d-grid gap-2">
+									<button type="button" class="btn btn-primary">Accept</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END OFFCANVAS TOP-->
+
 		<div class="d-flex">
 			<div class="b-example-divider b-example-vr"></div>
 			<div class="container p-3 my-3 border">
@@ -265,6 +310,8 @@
 		<script src="js/toastNotif.js"></script>
 		<script src="js/main.js"></script>
 		<script src="js/clipboardHandler.js"></script>
+		<script src="js/nav.js"></script>
+		<script src="js/file.js"></script>
 		<!-- JS CODE -->
 		<script>
 			Toast.defaultTitle="MD View";
@@ -274,14 +321,31 @@
 				clipboardHandler.AddButtons('pre[class^="language-"]');
 			});
 			// Configuring the Nav object
-			Nav._navCallback=LoadFiles;
+			// This is the function that will be called to load the data
+			Nav._loadCallback=loadFileTree;
+			// This is the object that manages the notifications.
+			// Needs show(body, title) and showError(body, title) methods
+			Nav._notificationsCallback=Toast;
 			// Nav event listener
 			document.addEventListener("nav-load", function(){
-
 				let navPath = document.getElementById("doc-nav-path");
 				if (navPath){
-					console.log('nav-load');
 					navPath.value=Nav.current();
+					let btnPrev = document.getElementById("doc-nav-previous");
+					if (btnPrev){
+						btnPrev.setAttribute("disabled",null);
+						if(Nav.count()>0){if(!Nav.isFirst()){btnPrev.removeAttribute("disabled");}}
+					}
+					let btnNext = document.getElementById("doc-nav-next");
+					if (btnNext){
+						btnNext.setAttribute("disabled",null);
+						if(Nav.count()>0){if(!Nav.isLast()){btnNext.removeAttribute("disabled");}}
+					}
+					let btnRefresh = document.getElementById("doc-nav-refresh");
+					if (btnRefresh){
+						if(Nav.count()>0){btnRefresh.removeAttribute("disabled");
+						}else{btnRefresh.setAttribute("disabled",null);}
+					}
 				}
 			});
 			// File event listener

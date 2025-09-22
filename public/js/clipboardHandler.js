@@ -71,7 +71,7 @@ class clipboardHandler{
                 el.appendChild(copyButton);
             });
         }else{
-            console.log('No elements found');
+            //console.log('No elements found');
         }
     }
     static SetNotificationHandler (handler){

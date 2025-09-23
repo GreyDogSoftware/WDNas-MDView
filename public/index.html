@@ -379,6 +379,11 @@
 		</script>
 		</script>
 		<script>
+			// This is to resolve a small quirk while refreshing the page.
+			// For some reason the button doesn't defaults to disabled
+			// if previously was enabled.
+			let fileInfo = document.getElementById("doc-info");
+			if (fileInfo){fileInfo.setAttribute("disabled",null);}
 			// Main load function call. This is defined in the main.js file
 			LoadRepos();
 		</script>

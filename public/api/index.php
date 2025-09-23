@@ -7,7 +7,7 @@ error_reporting(E_ALL);
 define('DS', DIRECTORY_SEPARATOR);
 define('BASE_DIR',              realpath(dirname(__FILE__).'/..'));
 define('CORE_DIR',              realpath(BASE_DIR.'/core'));
-define('CORE_CONFIG_DIR',       realpath(BASE_DIR.'/config'));
+define('CORE_CONFIG_DIR',       realpath(BASE_DIR.'/../config'));
 define('CORE_CLASSES_DIR',      realpath(CORE_DIR.'/classes'));
 define('CORE_FUNCTIONS_DIR',    realpath(CORE_DIR.'/functions'));
 // Core stuff
@@ -27,8 +27,6 @@ define('HEADER_HTTP_UNAUTHORIZED',  "HTTP/1.1 401 Unauthorized");
 define('HEADER_HTTP_NOTFOUND',      "HTTP/1.1 404 Not Found");
 // Constants content type
 define('HEADER_CONTENT_JSON',       'Content-Type: application/json; charset=utf-8');
-
-
 
 $config = null;
 $Response['headers'] =  array(

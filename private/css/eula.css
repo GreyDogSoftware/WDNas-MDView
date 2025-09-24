@@ -1,0 +1,355 @@
+/*
+SPDX-FileCopyrightText: 2020 Western Digital Corporation or its affiliates.
+
+SPDX-License-Identifier: GPL-2.0-or-later
+*/
+
+/* EULA */
+
+#eula_container {
+	position:relative;
+	width:930px;
+    height:550px;
+    margin:0 auto 0 auto;
+    display:none;
+}
+
+
+#eula_content {
+    position:relative;
+    padding-top:190px;
+    padding-left:200px;
+}
+
+#eulaView {
+    display:none;
+    width:560px;
+    font-family:Tahoma,Geneva,sans-serif;
+    /*margin-top:55px;*/
+    color:#C3C3C3;
+}
+.eulaTitle{
+    font-size:18px;
+    font-family:"Helvetica Neue Light",Helvetica, sans-serif;
+    font-weight:bold;
+    color:#C3C3C3;
+    margin-bottom:10px;
+}
+.eulaSubtext {
+    font-size:12px;
+}
+#eulaHead {
+    margin-bottom:15px;
+}
+#eulaTextWrap {
+    /*
+    border-top:dotted 1px gray;
+    border-bottom:dotted 1px gray;
+    */
+    padding:5px 0;
+    height:211px;
+}
+#eulaText {
+    overflow:hidden;
+    height:211px;
+    width:600px;
+    font-family:Tahoma,Geneva,sans-serif;
+    font-size:11px;
+	background-color:#fff;
+}
+
+#eula_iframe{
+	width:100%;
+	height:100%;
+	border:none;
+}
+
+#eulaActions { margin-top:10px; }
+#eulaActions a { 
+    font-family:Helvetica,sans-serif;
+    font-weight:normal;
+    font-size:16px;
+    display:block; 
+}
+
+#eulaAgreeLink{
+    float:right;
+}
+
+#eulaTextWrap .jScrollPaneContainer {
+    width:100%;
+    height:100%;
+}
+
+#eula_forms_container {
+    display: block;
+}
+
+#eula_language_form label {
+    font-size:18px;
+    font-family:"Helvetica Neue Light",Helvetica, sans-serif;
+    font-weight:bold;
+    width:auto;
+    vertical-align:top;
+}
+#eula_agree_form label {
+    width: auto;
+}
+
+#eula_forms_container .ui-selectmenu {
+    margin-bottom:10px !important;
+}
+#eula_forms_container a, #eulaView a, #eulaSubmitContainer a {
+    /*color:#0085D2;*/
+}
+
+.eulaBigLink {
+    color:#0085D2;
+    text-decoration:none;
+    font-size:18px;
+    letter-spacing:1px;
+}
+
+
+#eula_acceptance_error, #eula_not_accepted_error {
+    display:none;
+}
+/* end EULA */
+
+#eula_wizard_step_2,
+#eula_wizard_step_3,
+#eula_wizard_step_4,
+#eula_wizard_step_4_1,
+#eula_wizard_step_5,
+#eula_wizard_step_5_1,
+#eula_wizard_step_5_2,
+#eula_wizard_step_6,
+#eula_wizard_step_7,
+#eula_wizard_step_8,
+#eula_wizard_step_9,
+#eula_wizard_step_10,
+#eula_wizard_step_11,
+#eula_wizard_step_12,
+#eula_wizard_step_complete {
+	display: none;
+	z-index: 100;
+}
+
+.eula-wizard .wd_logo {
+	margin-bottom: 30px;
+}
+
+.eula-wizard ._b4 {
+	margin: 0;
+}
+
+.eula-wizard .title-2 {
+	width: 100%;
+	font-size: 30px;
+	line-height: 42px;
+	align-items: center;
+	text-align: center;
+	color: #2E313A;
+	margin-top: 55px;
+	display: block;
+}
+
+#eula_wizard_step_1 .title-1 {
+	font-size: 45px;
+}
+
+#eula_wizard_step_1 .title-1,
+#eula_wizard_step_1 .title-2 {
+	margin-left: 20px;
+}
+
+#eula_wizard_step_1 .title-1,
+#eula_wizard_step_1 .title-2,
+#eula_wizard_step_1 .agree-wd-user-license,
+#eula_wizard_step_1 .eula-wizard-button-next1 {
+	text-align: left;
+}
+
+
+.eula-wizard #eula_wizard_step_1 .title-2 {
+	display: block;
+	font-size: 45px;
+}
+
+.eula-wizard #eula_wizard_step_1 ._b4 table {
+	width: auto;
+}
+
+.eula-wizard #eula_wizard_step_1 ._b4 table tr td:first-child {
+	width: auto;
+	padding: 10px 30px 10px 0;
+}
+
+.eula-wizard #eula_wizard_step_1 .select-language > div {
+	display: inline-block;
+	vertical-align: top;
+}
+
+.eula-wizard #eula_wizard_step_1 .select-language > div:first-child {
+	padding: 5px 10px 0 0;
+}
+
+.eula-wizard-device-icon {
+	text-align: center;
+}
+
+.eula-wizard .agree-wd-user-license {
+	margin: 30px 0 10px 0;
+	text-align: center;
+	display: block;
+}
+
+.eula-wizard-button-next1,
+.eula-wizard-button-next2 {
+	margin-top: 10px;
+	text-align: center;
+}
+
+.eula-wizard #eulaText {
+	width: 100%;
+}
+
+.eula-wizard-eula-textbox {
+	margin: 50px auto 0 auto;
+	height: 550px !important;
+}
+
+#eula_wizard_step_3 ._b4 {
+	width: 600px;
+	height: 430px;
+}
+
+#eula_wizard_step_4_1 {
+	z-index: 100;
+	background-color: white;
+	border-radius: 5px;
+}
+
+#eula_wizard_step_4_1 .title-2 {
+	padding-top: 200px;
+}
+
+#eula_wizard_step_5 ._b4 {
+	height: 90%;
+	width: 100%;
+	display: table;
+	box-sizing: border-box;
+}
+
+.eula-wizard ._b4 table tr td:first-child {
+	width: 240px;
+	height: 32px;
+	padding: 10px 0 10px 0;
+}
+
+#eula_wizard_step_complete ._b4 {
+	display: table;
+	height: 100%;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.WDLabelDiag.eula-wizard-dialog {
+	width: 800px;
+	display: none;
+}
+
+.eula-wizard-dialog .WDLabelHeaderDialogue {
+	top: 10px;
+}
+
+.WDLabelDiag.eula-wizard-dialog.eula-step {
+	position: static;
+	width: 100%;
+	display: block;
+	padding-bottom: 20px;
+}
+
+.eula-wizard .WDLabelDiag .icon-warning,
+.eula-wizard .WDLabelDiag .title {
+	display: inline-block;
+	vertical-align: middle;
+	text-transform: none;
+	font-weight: bold;
+}
+
+.WDLabelDiag.eula-step .title {
+	font-size: 25px;
+	text-transform: none;
+}
+
+.WDLabelDiag.eula-step .body {
+	background-color: white;
+	background-image: none;
+	font-size: 16px;
+	padding: 20px 15px 30px;
+	height: 550px;
+}
+
+.WDLabelDiag.eula-step .body ._b4 table {
+	width: auto;
+	margin: 0;
+}
+
+.eula-wizard .WDLabelDiag .icon-warning {
+	width: 24px;
+	height: 24px;
+	margin: 12px;
+	background: url(/web/images/icon/notifications/Dropdown_icn_dropdown_notifications_warning.png) no-repeat 0 0;
+}
+
+.WDLabelDiag.eula-step .buttons {
+	margin-top: 20px;
+	margin-right: 20px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.WDLabelDiag.eula-step .buttons > div,
+.WDLabelDiag.eula-step .buttons button {
+	display: inline-block;
+}
+
+.WDLabelDiag.eula-step .buttons .button-left {
+	text-align: left;
+	margin-left: 20px;
+	top: 15px;
+}
+
+.WDLabelDiag .buttons .button-right {
+	text-align: right;
+}
+
+.tdfield_padding.tdfield_padding_left_10 {
+	width: 63px;
+	padding: 0;
+}
+
+input[type="text"],
+input[type="password"] {
+	outline: 1px solid #C8C8C8;
+}
+
+.eula-wizard-exposeMask {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	opacity: 0.7;
+	z-index: 10;
+	background-color: rgb(0, 0, 0);
+	display: none;
+}
+
+#eula_wizard_sign_in_with_existing_account, #create_new_cloud_account {
+	text-decoration-line: underline;
+	color: #45535F;
+	cursor: pointer;
+}

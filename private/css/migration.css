@@ -1,0 +1,470 @@
+/*
+SPDX-FileCopyrightText: 2020 Western Digital Corporation or its affiliates.
+
+SPDX-License-Identifier: GPL-2.0-or-later
+*/
+
+.migration-exposeMask {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	display: block;
+	opacity: 0.7;
+	z-index: 10;
+	background-color: rgb(0, 0, 0);
+	display: none;
+}
+
+#b4_main {
+	margin-top: 30px;
+}
+
+._b4 {
+	background: transparent;
+	border: 0;
+	width: auto;
+}
+
+table.login-tb {
+	width: 100%;
+	background:#fafafa;
+}
+
+._b4 table {
+	width: 550px;
+	margin: 0 auto;
+}
+
+.login-button {
+	text-align: center;
+	margin-top: 25px;
+}
+
+.migration .login-button {
+	display: none;
+}
+
+#login_tb tr td:first-child {
+	width: 240px;
+	padding-right: 10px;
+}
+
+#login_tb span.deleteicon {
+	left: 0;
+}
+
+#login_tb td {
+	padding: 10px 0 0;
+}
+
+#id_warn {
+	text-align: left;
+}
+
+.migration-button-next1,
+.migration-button-continue1,
+.migration-button-next2,
+.migration-button-continue2,
+.migration-button-next3,
+.migration-button-continue3,
+.migration-button-next4,
+.migration-button-continue4,
+.migration_button_continue-all-set {
+	margin-top: 37px;
+	text-align: center;
+}
+
+.migration-button-next1 {
+	display: none;
+}
+
+.migration-button,
+.migration-button:active {
+	background: #FFFFFF;
+	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+	border-radius: 5px;
+	width: 155px;
+	height: 45px;
+	border-top: 0px;
+	border-bottom: 0px;
+	outline: none;
+	color: #4B5A68;
+}
+
+.migration-button.upper {
+	text-transform: uppercase;
+}
+
+.loading-icon {
+	text-align: center;
+}
+
+.loading-icon {
+	margin-top: 115px;
+}
+
+.title-1 {
+	font-weight: bold;
+	font-size: 45px;
+	line-height: 56px;
+	align-items: center;
+	text-align: center;
+	color: #2E313A;
+}
+
+.title-2 {
+	display: none;
+}
+
+.migration .title-2 {
+	width: 100%;
+	font-size: 30px;
+	line-height: 42px;
+	align-items: center;
+	text-align: center;
+	color: #2E313A;
+	margin-top: 55px;
+	display: block;
+}
+
+.title-3 {
+	font-size: 24px;
+	line-height: 35px;
+	align-items: center;
+	text-align: center;
+	color: #000000;
+	width: 800px;
+	margin: 0 auto;
+}
+
+.text-tm {
+	font-size: 10px;
+	position: relative;
+	top: -0.7em;
+}
+
+.cant-remember-login-info {
+	font-size: 14px;
+	line-height: 16px;
+	text-align: center;
+	margin: 30px 0 0 0;
+	display: block;
+}
+
+.cant-remember-login-info > span {
+	color: #15abff !important;
+	cursor: pointer;
+}
+
+.agree-wd-user-license {
+	display: none;
+}
+
+.migration .agree-wd-user-license {
+	margin: 30px 0;
+	text-align: center;
+	display: block;
+}
+
+.migration ._b4 {
+	margin: 0;
+}
+
+#migration_step_1,
+#migration_step_2,
+#migration_step_3,
+#migration_step_4,
+#migration_step_4_2_1,
+#migration_step_5,
+#migration_step_5_1,
+#migration_step_5_2,
+#migration_step_6,
+#migration_step_7,
+#migration_step_8,
+#migration_step_9,
+#migration_step_10,
+#migration_step_11,
+#migration_step_12,
+#migration_step_all_set {
+	display: none;
+	z-index: 100;
+}
+
+#migration_step_1 ._b4 {
+	margin-top: 178px;
+}
+
+#migration_step_2 table tr td,
+#migration_step_5_1 table tr td,
+#migration_step_5_2 table tr td {
+	padding: 10px 0 10px 0;
+	position: relative;
+}
+
+#migration_step_3 ._b4 table {
+	margin: 0 auto;
+	margin-bottom: 30px;
+}
+
+#migration_step_3 ._b4 table tr td:first-child {
+	width: 240px;
+	height: 32px;
+	padding: 10px 0 10px 0;
+}
+
+#migration_step_4_2_1 {
+	z-index: 100;
+	background-color: white;
+	border-radius: 5px;
+}
+
+#migration_step_4_2_1 .title-2 {
+	padding-top: 200px;
+}
+
+#migration_step_5 ._b4 {
+	padding: 20px 10px;
+	margin-top: 20px;
+}
+
+#migration_step_5 ._b4 > div {
+	display: inline-block;
+}
+
+#migration_step_5 ._b4 .cloud-access-benefits-include > div,
+#migration_step_10 .cloud-access-benefits-include > div {
+	background: url('/web/images/icon/Check setup complete.png') no-repeat 0 0;;
+	margin: 0 0 20px 0;
+	padding-left: 45px;
+	height: 33px;
+	line-height: 33px;
+}
+
+#migration_step_10 .cloud-access-benefits-include > div {
+	margin: 0 0 30px 0;
+	height: auto;
+	min-height: 33px;
+	line-height: normal;
+	display: flex;
+	align-items: center;
+}
+
+#migration_step_3 ._b4,
+#migration_step_6 ._b4,
+#migration_step_7 ._b4 {
+	width: 850px;
+	margin: 20px 0;
+	box-sizing: border-box;
+}
+
+#migration_step_all_set ._b4 {
+	display: table;
+	height: 100%;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.migration-new-local-password-needed,
+.migration-my-cloud-os5-need-a-password {
+	display: none;
+}
+
+.migration_button_continue4,
+.migration-button-continue4-2-1,
+.migration-button-continue-all-set {
+	margin: 50px auto;
+	text-align: center;
+}
+
+.migration-button-continue4-2-1,
+.migration-button-continue-all-set {
+	margin-top: 350px;
+}
+
+.migration-button-keep-offline,
+.migration-button-stay-offline {
+	cursor: pointer;
+	font-size: 18px;
+}
+
+.migration #eulaText {
+	width: 100%;
+}
+
+.migration-eula-textbox {
+	margin: 50px auto 0 auto;
+	height: 550px !important;
+}
+
+.WDLabelDiag.migration-dialog {
+	/* background-color: white;
+	background-image: none;
+	border-radius: 5px; */
+	width: 800px;
+	display: none;
+}
+
+.migration-dialog .WDLabelHeaderDialogue {
+	top: 10px;
+}
+
+.WDLabelDiag.migration-dialog.migration-wizard {
+	position: static;
+	width: 100%;
+	display: block;
+	padding-bottom: 20px;
+}
+
+.migration .WDLabelDiag .icon-warning,
+.migration .WDLabelDiag .title {
+	display: inline-block;
+	vertical-align: middle;
+	text-transform: none;
+	font-weight: bold;
+}
+
+.WDLabelDiag.migration-wizard .title {
+	font-size: 25px;
+	text-transform: none;
+}
+
+.WDLabelDiag.migration-wizard .body {
+	background-color: white;
+	background-image: none;
+	font-size: 16px;
+	padding: 20px 15px 30px;
+	height: 550px;
+	text-align: justify;
+}
+
+.WDLabelDiag.migration-wizard .body ._b4 table {
+	width: auto;
+	margin: 0;
+}
+
+.migration .WDLabelDiag .icon-warning {
+	width: 24px;
+	height: 24px;
+	margin: 12px;
+	background: url(/web/images/icon/notifications/Dropdown_icn_dropdown_notifications_warning.png) no-repeat 0 0;
+}
+
+.WDLabelDiag.migration-wizard .buttons {
+	margin-top: 20px;
+	margin-right: 20px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.WDLabelDiag.migration-wizard .buttons > div,
+.WDLabelDiag.migration-wizard .buttons button {
+	display: inline-block;
+}
+
+.WDLabelDiag.migration-wizard .buttons .button-left {
+	text-align: left;
+	margin-left: 20px;
+	top: 15px;
+}
+
+.button-left button {
+	margin-right: 10px;
+}
+
+.WDLabelDiag .buttons .button-right {
+	text-align: right;
+}
+
+.button-right button {
+	margin-left: 10px;
+}
+
+#admin_update_password_tb tr td:first-child,
+#create_cloud_user_tb tr td:first-child,
+#sign_cloud_user_tb tr td:first-child {
+	width: 240px;
+}
+
+#skip_online_connection {
+	width: auto;
+}
+
+.new-mobile-web-app-note > a {
+	color: gray;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.migration-button-skip {
+	cursor: pointer;
+	margin: 0 30px;
+}
+
+.remove-this-user-button {
+	text-align: right;
+	vertical-align: top;
+}
+
+.remove-this-user-button > div {
+	display: inline-block;
+	height: 24px;
+	line-height: 24px;
+	text-decoration-line: underline;
+	color: black;
+	cursor: pointer;
+}
+
+.cloud-users-list > div,
+.cloud-shares-list > div {
+	margin-bottom: 20px;
+	height: 45px;
+}
+
+.cloud-users-list > div > div,
+.cloud-shares-list > div > div {
+	display: inline-block;
+}
+
+.cloud-users-list .checkbox,
+.cloud-shares-list .checkbox {
+	margin-right: 30px;
+	margin-top: 3px;
+}
+
+.cloud-users-list .content,
+.cloud-shares-list .content {
+	vertical-align: top;
+}
+
+.cloud-users-list .content > label *,
+.cloud-shares-list .content > label * {
+	font-size: 16px;
+}
+
+.grayout {
+	filter: alpha(opacity=30);
+	opacity: 0.3;
+	cursor: text;
+}
+
+#VE_Diag .file_input_hidden {
+	cursor: pointer;
+	font-size: 50px; 
+	position: absolute; 
+	right: 0px; 
+	top: 0px; 
+	width:1px;
+	opacity: 0; 
+	filter: alpha(opacity=0); 
+	-ms-filter: "alpha(opacity=0)"; 
+	-khtml-opacity: 0; 
+	-moz-opacity: 0;
+}
+
+#migration_sign_in_with_existing_account, #create_new_cloud_account {
+	text-decoration-line: underline;
+	color: #45535F;
+	cursor: pointer;
+}

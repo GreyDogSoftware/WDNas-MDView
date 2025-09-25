@@ -10,94 +10,201 @@
 	<link rel="stylesheet" href="css/style.css" type="text/css">
 	<link rel="stylesheet" href="css/access_icon.css" type="text/css">
 	<link rel="stylesheet" href="css/switch.css" type="text/css">
-	<link rel="icon" type="image/x-icon" href="/web/images/Logo_16x16.ico"></link>
+	<link rel="stylesheet" href="css/dialog.css" type="text/css">
+	<link rel="stylesheet" href="css/button.css" type="text/css">
+	<link rel="stylesheet" href="js/jquery/flexigrid/css/flexigrid.css" type="text/css">
 	<title></title>
 </head>
 
 <body>
-	<table cellspacing="0" cellpadding="0" border="0">
-		<!--Button-->
-		<tr>
-			<td class="tdfield"><span class="_text" datafld="desc26" lang="_module">Toggle(ON)</span>:</td>
-			<td width="20px"></td>
-			<td class="tdfield_padding">
-				<input class="onoffswitch" type="checkbox" value="1" style="position: absolute; z-index: -1; visibility: hidden;">
-				<span class="jquery-checkbox jquery-checkbox-checked" style="user-select: none;">
-					<div tabindex="0" class="checkbox_container">
-						<span class="toggle_off" style="display:none"></span>
-						<label class="checkbox_on"><span class="checkbox_on_text" style="display:inline-block">ON</span></label>
-						<label class="checkbox_off toggle_switch"><span class="checkbox_off_text" style="display:none">OFF</span></label>
-						<span class="toggle_on" style="display:inline-block"></span>
-					</div>
-				</span>
-			</td>
-		</tr>
-		<tr>
-			<td class="tdfield"><span class="_text" lang="_device" datafld="sdesc">Toggle(OFF)</span></td>
-			<td width="20px"></td>
-			<td class="tdfield_padding" colspan="2">
-				<input class="onoffswitch" type="checkbox" value="0" style="position: absolute; z-index: -1; visibility: hidden;">
-				<span class="jquery-checkbox" style="user-select: none;">
-					<div tabindex="0" class="checkbox_container">
-						<span class="toggle_off" style="display:inline-block"></span>
-						<label class="checkbox_on toggle_switch"><span class="checkbox_on_text" style="display:none">ON</span></label>
-						<label class="checkbox_off"><span class="checkbox_off_text" style="display:inline-block">OFF</span></label>
-						<span class="toggle_on" style="display:none"></span>
-					</div>
-				</span>
-			</td>
-		</tr>
-		<tr>
-			<td class="tdfield"><span class="_text" datafld="desc35" lang="_module">Button</span>:</td>
-			<td width="20px"></td>
-			<td class="tdfield_padding">
-				<button type="button" id="apps_remove_button"><span class="_text" datafld="desc5" lang="_app_center">Uninstall</span></button>
-			</td>
-		</tr>
-		<tr>
-			<td class="tdfield"><span class="_text" datafld="desc35" lang="_module">Label</span>:</td>
-			<td width="20px"></td>
-			<td class="tdfield_padding">
-				<span id="shares_usage_value">6.9GB</span>
-			</td>
-		</tr>
-		<tr>
-			<td class="tdfield"><span class="_text" lang="_device" datafld="sdesc">Textbox</span></td>
-			<td width="20px"></td>
-			<td class="tdfield_padding">
-				<span class="deleteicon">
-					<input tabindex="0" type="text" id="shares_editShareDesc_text" name="shares_editShareDesc_text" onkeyup="smb_show_save_button(event,'shares_descSave_button');" value="">
-					<span class="spacer"></span>
-					<span class="deletebutton" style="display: none;"></span>
-				</span>
-			</td>
-		</tr>
+	<div class="_text header_APP">Current repositories</div>
+	<div class="hr_0 field_top"><div class="hr_1"></div></div>
+	<div class="flexigrid tdfield_padding_top_14">
+		<table>
+			<thead>
+				<th style="width: 160px;">Name</th>
+				<th style="width: 560px;">Description</th>
+				<th style="width: 170px;">&nbsp;</th>
+			</thead>
+			<tbody id="repo-list">
 
-		</tbody>
-	</table>
+			</tbody>
+		</table>
+	</div>
+	&nbsp;
+	<div tabindex="0" id="repo-create-btn" class="VericalListButton LightningLabelButtonVericalListAddFolder"></div>
+	<div tabindex="0" id="repo-dialog" class="VericalListButton LightningLabelButtonVericalListAddFolder"></div>
 
+	<!-- MODAL EDITOR WINDOW -->
+    <div id="modal-window-create" class="modal">
+        <div class="modal-content">
+			<div class="WDLabelDiag" style="z-index: 9999; top: 79.6px; left: 581.75px; position: fixed; display: block;">
+				<div class="WDLabelHeaderDialogue2 WDLabelHeaderDialogueUsersIcon">Add repository</div>
+				<!-- userDiag -->
+				<div class="WDLabelBodyDialogue" style="overflow:hidden;">
+				<div>
+					<table border="0" cellspacing="0" cellpadding="0" height="0" id="create_user_tb">
+						<tbody>
+							<tr>
+								<td class="tdfield">Repo ID</td>
+								<td class="tdfield_padding">
+									<span class="deleteicon">
+										<input type="text" maxlength="16" class="lower" value="" id="repo-edit-id"/><span class="spacer"></span><span class="deletebutton"></span>
+									</span>
+								</td>
+								<td class="tdfield_padding tdfield_padding_left_10">
+									<div class="TooltipIcon tip_description" title="The ID must be unique. This is the valued from which the API will read the files inside. Max lenght of 16 characters."></div>
+									<div class="TooltipIconError tip_user_error SaveButton"></div>
+								</td>
+							</tr>
+							<tr>
+								<td class="tdfield">Name</td>
+								<td class="tdfield_padding">
+									<span class="deleteicon">
+										<input type="text" maxlength="16" value="" autocomplete="off" id="repo-edit-name"/><span class="spacer"></span><span class="deletebutton"></span>
+									</span>
+								</td>
+								<td class="tdfield_padding tdfield_padding_left_10">
+									<div class="TooltipIcon tip_description" title="A friendly name to show. If empty, the repo ID key will be used instead."></div>
+									<div class="TooltipIconError tip_user_error SaveButton"></div>
+								</td>
+							</tr>
+							<tr>
+								<td class="tdfield">Description</td>
+								<td class="tdfield_padding">
+									<span class="deleteicon">
+									<input type="text" maxlength="64" value="" autocomplete="off" id="repo-edit-description"/><span class="spacer"></span><span class="deletebutton"></span>
+									</span>
+								</td>
+								<td class="tdfield_padding tdfield_padding_left_10">
+									<div class="TooltipIcon tip_description" title="The description must be an alphanumeric value that can be up to 127 characters. Spaces and underscores are permitted."></div>
+									<div class="TooltipIconError tip_desc_error SaveButton"></div>
+								</td>
+							</tr>
+							<tr>
+								<td class="tdfield">Password</td>
+								<td class="tdfield_padding">
+									<span class="deleteicon">
+										<input type="password" value="" autocomplete="off" id="repo-edit-password"/><span class="spacer"></span><span class="deletebutton"></span>
+									</span>
+								</td>
+								<td class="tdfield_padding tdfield_padding_left_10">
+									<div class="TooltipIcon tip_pw_requirements" title="Password must be 8-64 characters. The following characters are allowed: a-z, A-Z, 0-9, ~!@#$%^&amp;*_-+=`|(){}[]:;&quot;'&lt;&gt;,.?/\  and space."></div>
+									<div class="TooltipIconError tip_pw_error SaveButton"></div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				</div>
+				<button type="button" class="ButtonMarginLeft_40px close-button"><span class="_text" lang="_button" datafld="Cancel">Cancel</span></button>
+				<button type="button" class="ButtonRightPos2 modal-accept-button"><span class="_text" lang="_button" datafld="apply">Apply</span></button>
+			</div>
+        </div>
+    </div>
+	<!-- END MODAL EDITOR WINDOW -->
 
-	<div id="userlist_div">
-		<div class="h1_content header_2">
-			<span class="_text" lang="_network_access" datafld="user_access">List</span>
-		</div>
-		<div id="mask_id">
-			<div id="userlist">
-				<ul class="ListDiv" id="userlist_ul">
-					<li src="local">
-						<div class="adminicon"></div>
-						<div class="name" rel="">admin</div>
-						<div class="access">Read / Write</div>
-					</li>
-					<li src="local">
-						<div class="usericon"></div>
-						<div class="name" rel="">deliciosa</div>
-						<div class="access">Deny Access</div>
-					</li>
-				</ul>
+	<!-- MODAL DIALOG -->
+	<div id="modal-window-dialog" class="modal">
+		<div class="modal-content">
+			<div class="WDLabelDiag" style="z-index: 9999; top: 79.6px; left: 581.75px; position: fixed; display: block;">
+				<div class="WDLabelHeaderDialogue2 WDLabelHeaderDialogueUsersIcon">Info</div>
+				<!-- userDiag -->
+				<div class="WDLabelBodyDialogue" style="overflow:hidden;">
+					asdfasdf
+				</div>
+				<button type="button" class="ButtonRightPos2 modal-dialog-close">Accept</button>
 			</div>
 		</div>
 	</div>
+	<!-- END MODAL DIALOG -->
 
+	<template id="template_menuItem">
+		<tr>
+			<td class="repo-row-name">SAMBA</td>
+			<td class="repo-row-description">CIFS: Authentication for user [nobody] has FAILED.</td>
+			<td class="repo-row-actions">2025 Sep 20 17:33:38</td>
+		</tr>
+	</template>
+
+	<script src="/apps/md-view/js/main.js"></script>
+	<script src="/apps/md-view/js/toastNotif.js"></script>
+	<script>
+		getConfig();
+	</script>
+
+<style>
+	/* Modal overlay */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.8); /* Black w/ opacity */
+}
+</style>
+<script type="text/javascript">
+
+	$(document).ready(function() {
+		var modal = $('#modal-window-create');
+		var msgBox = $('#modal-window-dialog');
+
+		var modalIsOpen = false;
+		var modalOpen = function(){
+			console.log('modalOpen()');
+			modalIsOpen=true;
+			modal.show();
+			//console.log(modal);
+		};
+		var modalClose = function(){
+			console.log('modalClose()');
+			modalIsOpen=false;
+			modal.hide();
+
+		}
+		$('#repo-create-btn').on('click', function() {
+			modalOpen();
+		});
+
+		$('.close-button').on('click', function() {
+			modalClose();
+		});
+
+		$('.modal-accept-button').on('click', function() {
+			if(modalIsOpen){
+				console.log('modal-accept-button::click');
+				let modalWindow = document.getElementById('modal-window-create');
+				let repoIDSource = document.querySelector('div#modal-window-create').querySelector('#repo-edit-id');
+				let repoNameSource = document.querySelector('div#modal-window-create').querySelector('#repo-edit-name');
+				let repoDescSource = document.querySelector('div#modal-window-create').querySelector('#repo-edit-description');
+				let repoPassSource = document.querySelector('div#modal-window-create').querySelector('#repo-edit-password');
+				console.log(repoIDSource.value);
+				console.log(repoNameSource.value);
+				console.log(repoDescSource.value);
+				console.log(repoPassSource.value);
+				msgBox.show();
+			}
+
+		});
+
+		$('#repo-dialog').on('click', function() {
+			msgBox.show();
+		});
+		$('.modal-dialog-close').on('click', function() {
+			msgBox.hide();
+		});
+
+		$(window).on('click', function(event) {
+			if ($(event.target).is(modal)) {
+				modalClose();
+			}
+		});
+	});
+
+</script>
 </body>
 </html>

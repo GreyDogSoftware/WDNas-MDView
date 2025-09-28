@@ -87,9 +87,14 @@ if ($config!=null){
                         $Files=$RepoObj->GetFiles($Query);
                         $FetchOk=true;
                     }catch (Exception $e) {
-                        $Response['headers']['status'] = HEADER_HTTP_BADREQUEST;
-                        $Response['body']['exit_code']=1;
+                        if($e->getCode()>=30 && $e->getCode()<=39){
+                            $Response['headers']['status'] = HEADER_HTTP_UNAUTHORIZED;
+                        }else{
+                            $Response['headers']['status'] = HEADER_HTTP_BADREQUEST;
+                        }
+                        $Response['body']['exit_code']=$e->getCode();
                         $Response['body']['exit_message']=$e->getMessage();
+
                     }
                     if ($FetchOk){
                         $Response['body']['exit_code']=0;
@@ -97,9 +102,10 @@ if ($config!=null){
                         $Response['body']['content']=$Files;
                     }
                 }else{
+                    $NewException = new \NoPathSetException();
                     $Response['headers']['status'] = HEADER_HTTP_BADREQUEST;
-                    $Response['body']['exit_code']=2;
-                    $Response['body']['exit_message']='No path set';
+                    $Response['body']['exit_code']=$NewException->getCode();
+                    $Response['body']['exit_message']=$NewException->getMessage();
                 }
                 break;
             case 'get_repos':
@@ -110,7 +116,7 @@ if ($config!=null){
                     $Response['body']['content']=$Content;
                 }catch (Exception $e) {
                     $Response['headers']['status'] = HEADER_HTTP_BADREQUEST;
-                    $Response['body']['exit_code']=1;
+                    $Response['body']['exit_code']=$e->getCode();
                     $Response['body']['exit_message']=$e->getMessage();
                 }
                 break;
@@ -126,13 +132,14 @@ if ($config!=null){
                         $Response['body']['content']=$Content;
                     }catch (Exception $e) {
                         $Response['headers']['status'] = HEADER_HTTP_BADREQUEST;
-                        $Response['body']['exit_code']=1;
+                        $Response['body']['exit_code']=$e->getCode();
                         $Response['body']['exit_message']=$e->getMessage();
                     }
                 }else{
+                    $NewException = new \NoPathSetException();
                     $Response['headers']['status'] = HEADER_HTTP_BADREQUEST;
-                    $Response['body']['exit_code']=2;
-                    $Response['body']['exit_message']='No path set';
+                    $Response['body']['exit_code']=$NewException->getCode();
+                    $Response['body']['exit_message']=$NewException->getMessage();
                 }
                 break;
             case 'get_auth':
@@ -146,19 +153,20 @@ if ($config!=null){
                             $Response['body']['exit_message']='auth ok';
                         }else{
                             $Response['headers']['status'] = HEADER_HTTP_UNAUTHORIZED;
-                            $Response['body']['exit_code']=1;
+                            $Response['body']['exit_code']=$e->getCode();
                             $Response['body']['exit_message']='sucess';
                             $Response['body']['content']=$KeyIsValid;
                         }
                     }catch (Exception $e) {
                         $Response['headers']['status'] = HEADER_HTTP_BADREQUEST;
-                        $Response['body']['exit_code']=1;
+                        $Response['body']['exit_code']=$e->getCode();
                         $Response['body']['exit_message']=$e->getMessage();
                     }
                 }else{
+                    $NewException = new \RepositoryPathNotDefinedException();
                     $Response['headers']['status'] = HEADER_HTTP_BADREQUEST;
-                    $Response['body']['exit_code']=2;
-                    $Response['body']['exit_message']='No path set';
+                    $Response['body']['exit_code']=$NewException->getCode();
+                    $Response['body']['exit_message']=$NewException->getMessage();
                 }
                 break;
             case 'set_repokey':
@@ -175,24 +183,28 @@ if ($config!=null){
                             $Response['body']['content']=$NewSecret;
                         }catch (Exception $e) {
                             $Response['headers']['status'] = HEADER_HTTP_BADREQUEST;
-                            $Response['body']['exit_code']=1;
+                            $Response['body']['exit_code']=$e->getCode();
                             $Response['body']['exit_message']=$e->getMessage();
                         }
                     }else{
+                        $NewException = new \NoAuthorizationProvidedException();
                         $Response['headers']['status'] = HEADER_HTTP_BADREQUEST;
-                        $Response['body']['exit_code']=1;
-                        $Response['body']['exit_message']='No secret set.';
+                        $Response['body']['exit_code']=$NewException->getCode();
+                        $Response['body']['exit_message']=$NewException->getMessage();
                     }
                 }else{
+                    $NewException = new \RepositoryPathNotDefinedException();
                     $Response['headers']['status'] = HEADER_HTTP_BADREQUEST;
-                    $Response['body']['exit_code']=1;
-                    $Response['body']['exit_message']='No repo name set';
+                    $Response['body']['exit_code']=$NewException->getCode();
+                    $Response['body']['exit_message']=$NewException->getMessage();
                 }
                 break;
         }
     }else{
-        $Response['body']['exit_code']=1;
-        $Response['body']['exit_message']='No action set';
+        $NewException = new \NoActionSetException();
+        $Response['headers']['status'] = HEADER_HTTP_BADREQUEST;
+        $Response['body']['exit_code']=$NewException->getCode();
+        $Response['body']['exit_message']=$NewException->getMessage();
     }
 }
 

@@ -72,7 +72,7 @@
 			</ul>
 		</div>
 		<!-- OFFCANVAS LEFT-->
-		<div class="offcanvas offcanvas-start text-bg-dark" data-bs-scroll="true" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+		<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasLeft" data-bs-scroll="true" aria-labelledby="offcanvasExampleLabel">
 			<div class="offcanvas-header">
 				<a href="/md-view" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
 					<img height="64px" style="margin-right: 5px;" src="img/favicon.png"/>
@@ -230,15 +230,17 @@
 		</div>
 		<!-- END OFFCANVAS TOP-->
 
+		<!-- MAIN BODDY -->
 		<div class="d-flex">
 			<div class="b-example-divider b-example-vr"></div>
 			<div class="container p-3 my-3 border">
 				<div style="padding-bottom: 15px;" class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center border-bottom">
-					<button class="btn btn-sm btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+					<button class="btn btn-sm btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLeft" aria-controls="offcanvasLeft">
 						Browser
 					</button>
 					<h1 class="h2" id="doc_filename"></h1>
 					<div class="btn-toolbar mb-2 mb-md-0" id="doc-actions">
+						<button class="btn btn-sm btn-outline-secondary" type="button" id="login-form">Top JS</button>
 						<button class="btn btn-sm btn-outline-secondary" type="button" id="doc-info" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" disabled><i class="bi bi-info-circle"></i> Info</button>
 					</div>
 				</div>
@@ -254,6 +256,7 @@
 				<!-- END DOCUMENT CONTENT CONTAINER-->
 			</div>
 		</div>
+		<!-- END MAIN BODY -->
 
 		<!-- TEMPLATES -->
 		<template id="template_menuItem">
@@ -377,6 +380,24 @@
 				if (fileInfo){fileInfo.removeAttribute("disabled");}
 			});
 		</script>
+		<script>
+			var offcanvasTopSource = document.getElementById("offcanvasTop");
+			var offcanvasLeftSource = document.getElementById("offcanvasLeft");
+			var offcanvasRightSource = document.getElementById("offcanvasRight");
+
+			var offcanvasTopObj = new bootstrap.Offcanvas(offcanvasTopSource);
+			var offcanvasLeftObj = new bootstrap.Offcanvas(offcanvasLeftSource);
+			var offcanvasRightObj = new bootstrap.Offcanvas(offcanvasRightSource);
+
+			//The offcanvas element is toggled using the toggle() function
+			//let button = document.getElementById("login-form");
+			//button.addEventListener("click", () => {return offcanvas.toggle();});
+
+			var showLogin=function(){
+				offcanvasLeftObj.hide();
+				offcanvasRightObj.hide();
+				offcanvasTopObj.show();
+			}
 		</script>
 		<script>
 			// This is to resolve a small quirk while refreshing the page.

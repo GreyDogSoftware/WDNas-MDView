@@ -51,10 +51,18 @@ const Nav={
         let _ref = this;
         this.makeRequest(newPath, function(err, data){
             if (err !== 200) {
-                if(data['exit_message']){
-                    _ref.showError('HTTP: Error' + err + "\n" +data['exit_message'],'Error');
+                if(data['exit_code']){
+                    if(data['exit_code']>=30 && data['exit_code']<=39){
+                        offcanvasLeftObj.hide();
+                        offcanvasRightObj.hide();
+                        offcanvasTopObj.show();
+                    }
                 }else{
-                    _ref.showError('Something went wrong. HTTP' + err,'Error');
+                    if(data['exit_message']){
+                        _ref.showError('HTTP: Error' + err + "\n" +data['exit_message'],'Error');
+                    }else{
+                        _ref.showError('Something went wrong. HTTP' + err,'Error');
+                    }
                 }
             }else{
                 // Are we at the end of the array?

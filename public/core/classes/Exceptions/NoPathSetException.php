@@ -1,8 +1,8 @@
 <?php
-class ContentNotFoundException extends Exception{
+class NoPathSetException extends Exception{
     // Redefinir la excepción para que el mensaje no sea opcional.
     public function __construct() {
-        parent::__construct('File source not found.', 20);
+        parent::__construct('Repository key not found in config.', 3);
     }
 }
 ?>

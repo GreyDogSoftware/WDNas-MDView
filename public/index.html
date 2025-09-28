@@ -241,7 +241,6 @@
 					</button>
 					<h1 class="h2" id="doc_filename"></h1>
 					<div class="btn-toolbar mb-2 mb-md-0" id="doc-actions">
-						<button class="btn btn-sm btn-outline-secondary" type="button" id="login-form">Top JS</button>
 						<button class="btn btn-sm btn-outline-secondary" type="button" id="doc-info" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" disabled><i class="bi bi-info-circle"></i> Info</button>
 					</div>
 				</div>
@@ -410,8 +409,6 @@
 				let repoKeyTarget = document.getElementById("repo-auth-key");
 				let repoPassTarget = document.getElementById("repo-auth-password");
 				if (repoKeyTarget && repoPassTarget){
-					//console.log(repoKeyTarget.value);
-					//console.log(repoPassTarget.value);
 					let Auth = new AuthHandler();
 					Auth.createAuth(repoKeyTarget.value, repoPassTarget.value);
 				}

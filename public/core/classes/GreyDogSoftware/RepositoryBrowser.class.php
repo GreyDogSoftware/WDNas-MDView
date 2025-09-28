@@ -73,8 +73,12 @@ namespace GreyDogSoftware{
             $ContentKey = $this->GetKeyFromPath($Path);
             if(strtolower($ContentKey)==strtolower($this->Key)){
                 $ContentPath = $this->GetAbsolutePath($Path);
-                header('Content-Type: text/plain; charset=UTF-8');
-                readfile($ContentPath);
+                if($this->isAuthorized()){
+                    header('Content-Type: text/plain; charset=UTF-8');
+                    readfile($ContentPath);
+                }else{
+                    throw new \AuthorizationRequiredException();
+                }
             }else{
                 // Invalid path. Maybe, empty, or from another repo.
             }

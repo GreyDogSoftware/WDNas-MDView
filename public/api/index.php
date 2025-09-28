@@ -36,6 +36,8 @@ $Response['headers'] =  array(
 $Response['body'] =  array(
     'exit_code'=> 0,        // Exit code of the function. If zero, it means no error
     'exit_message'=> '',    // A message in case of an error
+    'repokey'=> '',  // Queried path
+    'reponame'=> '', // Queried path
     'query_path'=> '',      // Queried path
     'content' =>''          // Content from the queried path
 );
@@ -94,11 +96,15 @@ if ($config!=null){
                         }
                         $Response['body']['exit_code']=$e->getCode();
                         $Response['body']['exit_message']=$e->getMessage();
+                        $Response['body']['repokey']=$RepoObj->Key;
+                        $Response['body']['reponame']=$RepoObj->FriendlyName;
 
                     }
                     if ($FetchOk){
                         $Response['body']['exit_code']=0;
                         $Response['body']['exit_message']='sucess';
+                        $Response['body']['repokey']=$RepoObj->Key;
+                        $Response['body']['reponame']=$RepoObj->FriendlyName;
                         $Response['body']['content']=$Files;
                     }
                 }else{
@@ -129,6 +135,8 @@ if ($config!=null){
                         $Content= $RepoObj->GetFileInfo($Query);
                         $Response['body']['exit_code']=0;
                         $Response['body']['exit_message']='sucess';
+                        $Response['body']['repokey']=$RepoObj->Key;
+                        $Response['body']['reponame']=$RepoObj->FriendlyName;
                         $Response['body']['content']=$Content;
                     }catch (Exception $e) {
                         $Response['headers']['status'] = HEADER_HTTP_BADREQUEST;
@@ -170,16 +178,18 @@ if ($config!=null){
                 }
                 break;
             case 'set_repokey':
-                if (isset($_GET['repo'])){
-                    if (isset($_GET['secret'])){
-                        $RepoKey =$_GET['repo'];
+                if (isset($_POST['repo'])){
+                    if (isset($_POST['secret'])){
+                        $RepoKey = $_POST['repo'];
                         try{
                             $RepoObj = new RepositoryBrowser($config,$RepoKey);
-                            $NewSecret = RepositoryBrowser::GetAuthCookie($RepoKey,$_GET['secret']);
+                            $NewSecret = RepositoryBrowser::GetAuthCookie($RepoKey,$_POST['secret']);
                             // Cookies are valid only for the current session.
                             setcookie($RepoObj->GetAuthCookieName(), $NewSecret);
                             $Response['body']['exit_code']=0;
                             $Response['body']['exit_message']='key set';
+                            $Response['body']['repokey']=$RepoObj->Key;
+                            $Response['body']['reponame']=$RepoObj->FriendlyName;
                             $Response['body']['content']=$NewSecret;
                         }catch (Exception $e) {
                             $Response['headers']['status'] = HEADER_HTTP_BADREQUEST;

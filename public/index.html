@@ -188,7 +188,7 @@
 		<!-- OFFCANVAS TOP -->
 		<div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
 			<div class="offcanvas-header">
-				<h5 class="offcanvas-title" id="offcanvasTopLabel">Offcanvas top</h5>
+				<h5 class="offcanvas-title" id="offcanvasTopLabel">Authentication needed</h5>
 				<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 			</div>
 			<div class="offcanvas-body">
@@ -196,9 +196,9 @@
 					<div class="row">
 						<div class="col-md-6 offset-md-3">
 							<div class="mb-3 row">
-								<label for="staticEmail" class="col-sm-2 col-form-label">Repository</label>
+								<label for="repo-auth-name" class="col-sm-2 col-form-label">Repository</label>
 								<div class="col-sm-10">
-									<input type="text" readonly class="form-control-plaintext" id="staticEmail" value="Kazu private stash">
+									<input type="text" readonly class="form-control-plaintext" id="repo-auth-name" value="Kazu private stash">
 								</div>
 							</div>
 						</div>
@@ -206,9 +206,10 @@
 					<div class="row">
 						<div class="col-md-6 offset-md-3">
 							<div class="mb-3 row">
-								<label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+								<label for="repo-auth-password" class="col-sm-2 col-form-label">Password</label>
 								<div class="col-sm-10">
-									<input type="password" class="form-control" id="inputPassword">
+									<input type="hidden" class="form-control" id="repo-auth-key">
+									<input type="password" class="form-control" id="repo-auth-password">
 								</div>
 							</div>
 						</div>
@@ -217,10 +218,10 @@
 						<div class="col-md-6 offset-md-3">
 							<div class="mb-3 row">
 								<div class="col-sm-6 d-grid gap-2">
-									<button type="button" class="btn btn-primary">Cancel</button>
+									<button type="button" class="btn btn-primary" id="repo-auth-btn-cancel">Cancel</button>
 								</div>
 								<div class="col-sm-6 d-grid gap-2">
-									<button type="button" class="btn btn-primary">Accept</button>
+									<button type="button" class="btn btn-primary" id="repo-auth-btn-accept">Accept</button>
 								</div>
 							</div>
 						</div>
@@ -315,6 +316,7 @@
 		<script src="js/clipboardHandler.js"></script>
 		<script src="js/nav.js"></script>
 		<script src="js/file.js"></script>
+		<script src="js/auth.js"></script>
 		<!-- JS CODE -->
 		<script>
 			Toast.defaultTitle="MD View";
@@ -385,19 +387,36 @@
 			var offcanvasLeftSource = document.getElementById("offcanvasLeft");
 			var offcanvasRightSource = document.getElementById("offcanvasRight");
 
-			var offcanvasTopObj = new bootstrap.Offcanvas(offcanvasTopSource);
-			var offcanvasLeftObj = new bootstrap.Offcanvas(offcanvasLeftSource);
-			var offcanvasRightObj = new bootstrap.Offcanvas(offcanvasRightSource);
-
-			//The offcanvas element is toggled using the toggle() function
-			//let button = document.getElementById("login-form");
-			//button.addEventListener("click", () => {return offcanvas.toggle();});
-
-			var showLogin=function(){
-				offcanvasLeftObj.hide();
-				offcanvasRightObj.hide();
-				offcanvasTopObj.show();
+			var offcanvasTop = new bootstrap.Offcanvas(offcanvasTopSource);
+			var offcanvasLeft = new bootstrap.Offcanvas(offcanvasLeftSource);
+			var offcanvasRight = new bootstrap.Offcanvas(offcanvasRightSource);
+			var showLogin=function(repoNameValue,repoKeyValue){
+				let repoNameTarget = document.getElementById("repo-auth-name");
+				if (repoNameTarget){repoNameTarget.setAttribute('value',repoNameValue);}
+				let repoKeyTarget = document.getElementById("repo-auth-key");
+				if (repoKeyTarget){repoKeyTarget.setAttribute('value',repoKeyValue);}
+				offcanvasLeft.hide();
+				offcanvasRight.hide();
+				offcanvasTop.show();
 			}
+
+			let offcanvasTopBtnCancel = document.getElementById("repo-auth-btn-cancel");
+			offcanvasTopBtnCancel.addEventListener("click", () => {
+				return offcanvasTop.hide();
+			});
+			let offcanvasTopBtnAccept = document.getElementById("repo-auth-btn-accept");
+			offcanvasTopBtnAccept.addEventListener("click", () => {
+				//let repoNameTarget = document.getElementById("repo-auth-name");
+				let repoKeyTarget = document.getElementById("repo-auth-key");
+				let repoPassTarget = document.getElementById("repo-auth-password");
+				if (repoKeyTarget && repoPassTarget){
+					//console.log(repoKeyTarget.value);
+					//console.log(repoPassTarget.value);
+					let Auth = new AuthHandler();
+					Auth.createAuth(repoKeyTarget.value, repoPassTarget.value);
+				}
+				return offcanvasTop.hide();
+			});
 		</script>
 		<script>
 			// This is to resolve a small quirk while refreshing the page.

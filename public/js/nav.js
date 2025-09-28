@@ -53,9 +53,9 @@ const Nav={
             if (err !== 200) {
                 if(data['exit_code']){
                     if(data['exit_code']>=30 && data['exit_code']<=39){
-                        offcanvasLeftObj.hide();
-                        offcanvasRightObj.hide();
-                        offcanvasTopObj.show();
+                        let key = data['repokey'];
+                        let name = data['reponame'];
+                        showLogin(name,key);
                     }
                 }else{
                     if(data['exit_message']){
